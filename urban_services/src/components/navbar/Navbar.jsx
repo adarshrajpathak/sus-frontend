@@ -34,8 +34,8 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/location" className="nav-link">
-                Location
+              <NavLink to="/allservices" className="nav-link">
+                All Services
               </NavLink>
             </li>
             <li className="nav-item">
