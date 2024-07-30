@@ -1,70 +1,103 @@
 // import './signup.css';
 import '../Login/login.css'
+import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
 
 export default function Signup() {
+    const navigate=useNavigate();
+    function goToLogin(){
+      navigate('/login');
+    }
+    const [formData, setFormData] = useState({
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: ''
+    });
+    const clearForm = () => {
+        setFormData({
+            first_name: '',
+            last_name: '',
+            email: '',
+            password: ''
+        });
+    }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            first_name: formData.first_name,
+            last_name: formData.last_name,
+            email: formData.email,
+            password: formData.password
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8585/signup', data, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            e.target.reset();
+            if (response.data.customer) {
+                alert('Signup successful');
+                goToLogin();
+            } else {
+                alert('Signup failed');
+            }
+            console.log(response.data);
+        } catch (error) {
+            console.error('There was an error!', error);
+            alert('An error occurred during signup');
+        }
+        clearForm();
+    };
     return (
-        <>
-            <form className="form">
-                <div className="flex-column">
-                    <label>Username</label>
+        <div className='form-container'>
+            <form className="form" onSubmit={handleSubmit}>
+            <div className="flex-column">
+                    <label>First Name</label>
                 </div>
                 <div className="inputForm">
-                    <svg height="20" viewBox="0 0 32 32" width="20">
-                        <g id="Layer_3" data-name="Layer 3">
-                            <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path>
-                        </g>
-                    </svg>
-                    <input type="text" className="input" placeholder="Enter your Username" />
+                    <input type="text" name="first_name" className="input" placeholder="Enter your First Name" onChange={handleChange} required/>
                 </div>
-
+                
+                <div className="flex-column">
+                    <label>Last Name</label>
+                </div>
+                <div className="inputForm">
+                    <input type="text" name="last_name" className="input" placeholder="Enter your Last Name" onChange={handleChange}/>
+                </div>
+            
                 <div className="flex-column">
                     <label>Email</label>
                 </div>
                 <div className="inputForm">
-                    <svg height="20" viewBox="0 0 32 32" width="20">
-                        <g id="Layer_3" data-name="Layer 3">
-                            <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path>
-                        </g>
-                    </svg>
-                    <input type="text" className="input" placeholder="Enter your Email" />
+                    <input type="text" name="email" className="input" placeholder="Enter your Email" onChange={handleChange} required/>
                 </div>
 
                 <div className="flex-column">
                     <label>Password</label>
                 </div>
                 <div className="inputForm">
-                    <svg height="20" viewBox="-64 0 512 512" width="20">
-                        <path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path>
-                        <path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path>
-                    </svg>
-                    <input type="password" className="input" placeholder="Enter your Password" />
-                    <svg viewBox="0 0 576 512" height="1em">
-                        <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path>
-                    </svg>
+                    <input type="password" name="password" className="input" placeholder="Enter your Password" onChange={handleChange} required/>
                 </div>
 
                 <button className="button-submit">Sign Up</button>
-                <p className="p">Already have an account? <span className="span">Sign In</span></p>
-                <p className="p line">Or With</p>
-
-                <div className="flex-row">
-                    <button className="btn google">
-                        <svg version="1.1" width="20" id="Layer_1" viewBox="0 0 512 512">
-                            <path style={{ fill: '#FBBB00' }} d="M113.47,309.408L95.648,375.94l-65.139,1.378C11.042,341.211,0,299.9,0,256c0-42.451,10.324-82.483,28.624-117.732h0.014l57.992,10.632l25.404,57.644c-5.317,15.501-8.215,32.141-8.215,49.456C103.821,274.792,107.225,292.797,113.47,309.408z"></path>
-                            <path style={{ fill: '#518EF8' }} d="M507.527,208.176C510.467,223.662,512,239.655,512,256c0,18.328-1.927,36.206-5.598,53.451c-12.462,58.683-45.025,109.925-90.134,146.187l-0.014-0.014l-73.044-3.731l-10.338-64.535c29.932-17.431,53.076-44.656,65.956-77.189H261.632v-84.185h245.895H507.527z"></path>
-                            <path style={{ fill: '#28B446' }} d="M416.268,455.638l0.014,0.014C373.329,490.019,318.509,512,256,512c-97.375,0-181.187-54.393-225.491-134.682l82.955-68.91c22.887,55.047,77.981,94.112,142.536,94.112c27.392,0,53.068-7.422,75.073-20.356L416.268,455.638z"></path>
-                            <path style={{ fill: '#F14336' }} d="M419.404,58.936L336.459,127.847c-22.071-12.942-48.12-20.38-75.073-20.38c-65.125,0-120.439,42.809-142.708,102.116L35.919,140.014h-0.014C79.864,58.376,163.525,0,256,0C318.115,0,375.068,22.126,419.404,58.936z"></path>
-                        </svg>
-                        Google
-                    </button>
-                    <button className="btn github">
-                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 .297C5.373.297 0 5.67 0 12.297c0 5.302 3.438 9.8 8.205 11.387.6.111.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.612-4.042-1.612-.546-1.387-1.332-1.758-1.332-1.758-1.088-.744.083-.729.083-.729 1.205.085 1.84 1.236 1.84 1.236 1.07 1.834 2.806 1.304 3.492.997.108-.776.418-1.304.76-1.605-2.665-.3-5.467-1.332-5.467-5.931 0-1.31.468-2.382 1.235-3.222-.124-.302-.535-1.522.117-3.176 0 0 1.007-.322 3.3 1.23.957-.266 1.983-.398 3.005-.404 1.02.006 2.048.138 3.005.404 2.29-1.553 3.297-1.23 3.297-1.23.653 1.653.242 2.873.12 3.176.77.84 1.235 1.912 1.235 3.222 0 4.61-2.807 5.625-5.478 5.92.43.372.815 1.102.815 2.222 0 1.606-.015 2.898-.015 3.293 0 .32.216.694.825.576C20.565 22.092 24 17.594 24 12.297 24 5.67 18.627.297 12 .297z"></path>
-                        </svg>
-                        GitHub
-                    </button>
-                </div>
             </form>
-        </>
+            <p className="p">Already have an account? 
+                <NavLink to="/login" className="nav-link">
+                    <span className="span">Log In</span>
+                </NavLink>
+            </p>
+        </div>
     );
 }

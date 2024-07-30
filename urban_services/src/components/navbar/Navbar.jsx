@@ -2,7 +2,13 @@ import "./navbar.css";
 import { NavLink } from "react-router-dom";
 import logo from "../../res/logoUS.png";
 import LoginIcon from "@mui/icons-material/Login";
+import PersonIcon from '@mui/icons-material/Person';
+import { CustomerContext } from "../../contexts/CustomerContext";
+import { useContext } from "react";
+
 export default function Navbar() {
+  const { customer } = useContext(CustomerContext);
+  console.log(customer);
   return (
     <header className="header">
       <nav className="nav-container">
@@ -23,32 +29,42 @@ export default function Navbar() {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink to="/about-us" className="nav-link">
                 About Us
               </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/blogs" className="nav-link">
-                Blogs
+            </li> */}
+            {/* <li className="nav-item">
+              <NavLink to="/booking" className="nav-link">
+                Book a Service
               </NavLink>
-            </li>
+            </li> */}
             <li className="nav-item">
               <NavLink to="/allservices" className="nav-link">
-                All Services
+                Book a Service
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/bookings" className="nav-link">
-                Bookings
+              <NavLink to="/mybookings" className="nav-link">
+                My Bookings
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/login" className="nav-link nav-cta">
-              <button class="boton-elegante">
-                <LoginIcon className="icon"/>&nbsp;Login 
-              </button>
-              </NavLink>
+              {customer ? (
+                <NavLink to="/profile" className="nav-link nav-cta">
+                  <button className="boton-elegante">
+                    <PersonIcon className="icon-login" />
+                    &nbsp;Profile
+                  </button>
+                </NavLink>
+              ) : (
+                <NavLink to="/login" className="nav-link nav-cta">
+                  <button className="boton-elegante">
+                    <LoginIcon className="icon-login" />
+                    &nbsp;Login
+                  </button>
+                </NavLink>
+              )}
             </li>
           </ul>
         </div>

@@ -1,6 +1,37 @@
 .services-container{
-    height: auto;
+    min-height: 50vh;
     width:auto;
     display: flex;
     flex-wrap: wrap;
+    position: relative;
+    justify-content: space-around;
+}
+.hero{
+    background: #323333;
+    position: relative;
+    padding: 10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:10vh;
+    height:40vh;
+    width: 98.7%;
+    background-image: url('../../assets/hero_enhance_cleanup.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+}
+.hero label{
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.hero select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
 }

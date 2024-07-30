@@ -1,0 +1,62 @@
+.my-bookings-container {
+  padding: 20px;
+  min-height: 90vh;
+  min-width: 80vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-bookings-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bookings-sections {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.bookings-section {
+  /* height: 35vh; */
+  width: 80vw;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.bookings-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.bookings-list {
+  height: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(255, 255, 255);
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.booking-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgb(255, 253, 253);
+}
+
+.booking-item:last-child {
+  margin-bottom: 0;
+}

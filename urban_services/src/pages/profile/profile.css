@@ -1,0 +1,62 @@
+.profile-container {
+  width: 80vw;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+  color: white;
+}
+.full-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.full-name div {
+  width: 47%;
+}
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-details {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.profile-field {
+  margin-bottom: 20px;
+}
+
+.profile-field label {
+  display: block;
+  margin-bottom: 5px;
+  color: #bbb;
+}
+
+.profile-field input {
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  color: white;
+}
+
+.password-field {
+  display: flex;
+  align-items: center;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  margin-left: 10px;
+}
