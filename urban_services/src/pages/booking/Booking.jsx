@@ -50,7 +50,7 @@ const formatDateTime = (date, time) => {
       place: place,
     };
     try {
-      const response = await axios.post("http://localhost:8585/booking/add", data, {
+      const response = await axios.post("http://15.207.179.46:8585/booking/add", data, {
         headers: {
           "Content-Type": "application/json",
         },
