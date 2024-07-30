@@ -12,7 +12,7 @@ export default function Allservices(){
         const fetchData = async () => {
             console.log("function is here");
             try {
-                const response = await axios.get('https://smart-utility-services.adarshrajpathak.dev:8585/utilities');
+                const response = await axios.get('https://smart-utility-services.adarshrajpathak.dev/utilities');
                 setAllServices(response.data); // Store the data in state
                 console.log(response.data);
             } catch (error) {
@@ -23,7 +23,7 @@ export default function Allservices(){
         fetchData(); // Call the fetchData function
     }, []); // Empty dependency array means this effect runs once on mount
     async function selectorHandler(tos){
-        const apiCallResponse=await axios.get(`https://smart-utility-services.adarshrajpathak.dev:8585/utilities?typeofservice=${tos}`);
+        const apiCallResponse=await axios.get(`https://smart-utility-services.adarshrajpathak.dev/utilities?typeofservice=${tos}`);
         setAllServices(apiCallResponse.data);
         console.log(apiCallResponse.data);
     }
