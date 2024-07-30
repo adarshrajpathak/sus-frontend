@@ -41,7 +41,7 @@ export default function Signup() {
         };
 
         try {
-            const response = await axios.post('http://15.207.179.46:8585/signup', data, {
+            const response = await axios.post('https://smart-utility-services.adarshrajpathak.dev:8585/signup', data, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

@@ -13,7 +13,7 @@ function MyBookings() {
   useEffect(() => {
     if (customer) {
       // Fetch active bookings
-      axios.get(`http://15.207.179.46:8585/mybookings-active/${customer.customer_id}`)
+      axios.get(`https://smart-utility-services.adarshrajpathak.dev:8585/mybookings-active/${customer.customer_id}`)
         .then(response => {
           setActiveBookings(response.data);
         })
@@ -22,7 +22,7 @@ function MyBookings() {
         });
 
       // Fetch cancelled bookings
-      axios.get(`http://15.207.179.46:8585/mybookings-cancelled/${customer.customer_id}`)
+      axios.get(`https://smart-utility-services.adarshrajpathak.dev:8585/mybookings-cancelled/${customer.customer_id}`)
         .then(response => {
           setCancelledBookings(response.data);
         })

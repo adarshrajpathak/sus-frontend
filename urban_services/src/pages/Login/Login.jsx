@@ -40,7 +40,7 @@ export default function Login() {
         };
 
         try {
-            const response = await axios.post('http://15.207.179.46:8585/login', data, {
+            const response = await axios.post('https://smart-utility-services.adarshrajpathak.dev:8585/login', data, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

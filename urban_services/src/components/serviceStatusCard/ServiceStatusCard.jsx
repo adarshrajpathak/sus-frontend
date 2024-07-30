@@ -7,7 +7,7 @@ const ServiceStatusCard = ({ booking,setActiveBookings, setCancelledBookings }) 
   const imageUrl = utility.pictures;
   const price=utility.price;
   function cancelBooking() {
-    axios.delete(`http://15.207.179.46:8585/cancel/${booking_id}`)
+    axios.delete(`https://smart-utility-services.adarshrajpathak.dev:8585/cancel/${booking_id}`)
     .then(response => {
       const { message, deleted } = response.data;
       console.log(response.data);
